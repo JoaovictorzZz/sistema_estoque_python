@@ -1,0 +1,233 @@
+/* ===== Reset ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ===== Layout geral ===== */
+body {
+    background-color: #050113;
+    color: #fff;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 220px;
+    background: #0a021f;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    transition: transform 0.3s ease;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    color: #4dd0ff;
+    font-size: 1.4em;
+    margin-bottom: 20px;
+    user-select: none;   /* não seleciona */
+    pointer-events: none; /* não clicável */
+}
+
+.sidebar ul {
+    list-style: none;
+}
+
+.sidebar li {
+    margin: 12px 0;
+}
+
+.sidebar a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.sidebar a span {
+    font-size: 0.8em;
+    color: #aaa;
+    font-weight: normal;
+}
+
+.sidebar a:hover {
+    color: #4dd0ff;
+}
+
+/* ===== Botão de menu responsivo ===== */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1100;
+    font-size: 1.8em;
+}
+
+/* ===== Área principal ===== */
+.main {
+    flex: 1;
+    margin-left: 220px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* ===== Header ===== */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header h1 {
+    color: #4dd0ff;
+    font-size: 2em;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ===== Cards métricas ===== */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h3 {
+    font-size: 1.2em;
+    color: #4dd0ff;
+    margin-bottom: 10px;
+    user-select: none;
+    pointer-events: none;
+}
+
+.card p {
+    font-size: 1.6em;
+    font-weight: bold;
+}
+
+/* ===== Formulários ===== */
+form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+input[type="text"],
+input[type="number"] {
+    padding: 12px;
+    margin: 8px 0;
+    border: 1px solid #4dd0ff;
+    border-radius: 8px;
+    background: #111;
+    color: #fff;
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+    box-shadow: 0 0 12px #4dd0ff;
+}
+
+button {
+    background: #4dd0ff;
+    color: #050113;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: #33aacc;
+    transform: translateY(-3px);
+}
+
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+/* ===== Lista de produtos ===== */
+.products ul {
+    list-style: none;
+    padding: 0;
+}
+
+.products li {
+    background: rgba(255, 255, 255, 0.05);
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.products li span {
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+/* ===== Footer ===== */
+.footer {
+    text-align: center;
+    padding: 15px;
+    font-size: 0.8em;
+    color: #aaa;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* ===== Responsividade ===== */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.active {
+        transform: translateX(0);
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .main {
+        margin-left: 0;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Sistema de Estoque</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <!-- Botão de menu responsivo -->
+    <div class="menu-toggle" onclick="document.querySelector('.sidebar').classList.toggle('active')">
+        📦
+    </div>
+
+    <!-- Sidebar fixa -->
+    <aside class="sidebar">
+        <h2>Como funciona o Sistema</h2>
+        <ul>
+            <li>
+                <a href="#adicionar">
+                    Adicionar <span>— incluir novos produtos no estoque</span>
+                </a>
+            </li>
+            <li>
+                <a href="#remover">
+                    Remover <span>— retirar uma quantidade de um produto existente</span>
+                </a>
+            </li>
+            <li>
+                <a href="#apagar">
+                    Apagar <span>— excluir completamente um produto da lista</span>
+                </a>
+            </li>
+            <li>
+                <a href="#editar">
+                    Editar <span>— atualizar a quantidade de um produto</span>
+                </a>
+            </li>
+            <li>
+                <a href="#produtos">
+                    Produtos <span>— visualizar todos os itens atuais no estoque</span>
+                </a>
+            </li>
+            <li>
+                <a href="#config">
+                    Configurações <span>— ajustar preferências do sistema</span>
+                </a>
+            </li>
+        </ul>
+    </aside>
+
+    <!-- Área principal -->
+    <main class="main">
+        <!-- Header -->
+        <div class="header">
+            <h1>Sistema de Estoque</h1>
+        </div>
+
+        <!-- Cards métricas -->
+        <section class="cards">
+            <div class="card">
+                <h3>Total Produtos</h3>
+                <p>{{ produtos|length }}</p>
+            </div>
+            <div class="card">
+                <h3>Entradas</h3>
+                <p>+{{ entradas }}</p>
+            </div>
+            <div class="card">
+                <h3>Saídas</h3>
+                <p>-{{ saidas }}</p>
+            </div>
+        </section>
+
+        <!-- Formulários -->
+        <section class="forms">
+            <h2 id="adicionar">Adicionar Produto</h2>
+            <form action="/adicionar" method="post">
+                <input type="text" name="nome" placeholder="Nome do produto">
+                <input type="number" name="quantidade" placeholder="Quantidade">
+                <button type="submit">Adicionar</button>
+            </form>
+
+            <h2 id="remover">Remover Produto</h2>
+            <form action="/remover" method="post">
+                <input type="text" name="nome" placeholder="Nome do produto">
+                <input type="number" name="quantidade" placeholder="Quantidade">
+                <button type="submit">Remover</button>
+            </form>
+
+            <h2 id="apagar">Apagar Produto</h2>
+            <form action="/apagar" method="post">
+                <input type="text" name="nome" placeholder="Nome do produto">
+                <button type="submit">Apagar</button>
+            </form>
+
+            <h2 id="editar">Editar Produto</h2>
+            <form action="/editar" method="post">
+                <input type="text" name="nome" placeholder="Nome do produto">
+                <input type="number" name="quantidade" placeholder="Nova quantidade">
+                <button type="submit">Editar</button>
+            </form>
+        </section>
+
+        <!-- Lista de produtos -->
+        <section class="products" id="produtos">
+            <h2>Produtos atuais</h2>
+            <ul>
+                {% for nome, qtd in produtos.items() %}
+                    <li>
+                        <strong>Produto: <br>{{ nome }}</strong>
+                        <span>Unidades: <br>{{ qtd }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer" id="config">
+            <p>© 2026 Sistema de Estoque - João Victor</p>
+        </footer>
+    </main>
+
+    <!-- JS simples para abrir/fechar menu -->
+    <script>
+        function toggleMenu() {
+            document.querySelector('.sidebar').classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
